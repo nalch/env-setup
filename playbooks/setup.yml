@@ -1,0 +1,90 @@
+- hosts: localhost
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+  tasks:
+
+    - name: Create Directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop: "{{ directories }}"
+      tags:
+        - directories
+
+    - name: Add Repository Keys
+      apt_key:
+        url: "{{ item }}"
+        state: present
+      become: yes
+      loop: "{{ repository_keys }}"
+      tags:
+        - repos
+
+    - name: Add Repositories
+      apt_repository:
+        repo: "{{ item }}"
+        state: present
+      become: yes
+      loop: "{{ repositories }}"
+      tags:
+        - repos
+
+    - name: Update package cache
+      apt:
+        update_cache: yes
+      become: yes
+      tags:
+        - repos
+
+    - name: Install Packages
+      yum:
+        name: "{{ packages }}"
+        state: latest
+      become: yes
+      tags:
+        - packages
+
+    - name: Install Snaps
+      snap:
+        name: "{{ snap_packages }}"
+        state: present
+        classic: yes
+      tags:
+        - packages
+
+    - name: Install Pip packages
+      pip:
+        name: "{{ pip_packages }}"
+        state: latest
+        extra_args: --user
+      tags:
+        - python
+
+    - name: Activate Python Argcomplete
+      command: activate-global-python-argcomplete --user
+      tags:
+        - python
+
+    - name: Create SSH key
+      user:
+        name: "{{ username }}"
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+      tags:
+        - ssh
+
+    - name: Install Oh-My-Zsh
+      shell: sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+      tags:
+        - shell
+
+    - name: Change Default Shell
+      user:
+        name: "{{ username }}"
+        shell: /usr/bin/zsh
+      become: yes
+      tags:
+        - shell
+    
+    
