@@ -39,7 +39,6 @@ snap_packages:
   - pycharm-professional
 
 pip_packages:
-  - pip
   - ansible
   - paramiko
   - argcomplete

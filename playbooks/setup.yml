@@ -52,6 +52,14 @@
       tags:
         - snap
 
+    - name: Update Pip
+      pip:
+        name: pip
+        state: latest
+      become: yes
+      tags:
+        - python
+
     - name: Install Pip packages
       pip:
         name: "{{ pip_packages }}"
