@@ -27,6 +27,7 @@ packages:
   - libxslt1-dev
   - libjpeg8-dev
   - zlib1g-dev
+  - snap
   - sublime-text
   - pass
   - httpie

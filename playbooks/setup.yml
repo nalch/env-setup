@@ -50,7 +50,7 @@
         state: present
         classic: yes
       tags:
-        - packages
+        - snap
 
     - name: Install Pip packages
       pip:
