@@ -100,3 +100,8 @@
         name: roles/docker
       tags:
         - docker
+    
+    - import_role:
+        name: roles/config
+      tags:
+        - config

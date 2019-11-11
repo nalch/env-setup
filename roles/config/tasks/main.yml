@@ -1,0 +1,31 @@
+- name: Copy zsh conf
+  template:
+    src: .zshrc.j2
+    dest: "{{ home_dir }}/.zshrc"
+    backup: yes
+  tags:
+    - config
+
+- name: Copy .tmux.conf
+  copy:
+    src: .tmux.conf
+    dest: "{{ home_dir }}/.tmux.conf"
+    backup: yes
+  tags:
+    - config
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ home_dir }}/scripts"
+    state: directory
+  tags:
+    - config
+
+- name: Copy Scripts
+  copy:
+    src: "{{ item }}"
+    dest: "{{ home_dir }}/scripts/{{ item }}"
+  loop:
+    - docker_container_name.py
+  tags:
+    - config
