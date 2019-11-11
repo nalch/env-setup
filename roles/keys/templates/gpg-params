@@ -1,0 +1,7 @@
+Key-Type: RSA
+Subkey-Type: RSA
+Key-Length: 2048
+Subkey-Length: 2048
+Name-Real: pass-{{ username }}
+Expire-Date: 0
+%commit

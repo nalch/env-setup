@@ -1,0 +1,32 @@
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: latest
+  become: yes
+  tags:
+    - docker
+
+- name: Create Docker Group
+  group:
+    name: docker
+    state: present
+  become: yes
+  tags:
+    - docker
+
+- name: Add Docker Group To User
+  user:
+    name: "{{ username }}"
+    groups: docker
+    append: yes
+  become: yes
+  tags:
+    - docker
+
+- name: Enable Docker Service
+  systemd:
+    name: docker
+    enabled: yes
+  become: yes
+  tags:
+    - docker

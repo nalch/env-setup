@@ -1,0 +1,38 @@
+- name: Create SSH key
+  user:
+    name: "{{ username }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+  tags:
+    - keys
+    - ssh
+
+- name: Run rngd
+  command: rngd -r /dev/urandom
+  become: yes
+  tags:
+    - keys
+    - gpg
+
+- name: Copy GPG Params
+  template:
+    src: gpg-params
+    dest: gpg-params
+  tags:
+    - keys
+    - gpg
+
+- name: Create GPG key
+  command: gpg --gen-key --batch gpg-params
+  tags:
+    - keys
+    - gpg
+
+- name: Clean GPG Params
+  file:
+    path: gpg-params
+    state: absent
+  tags:
+    - keys
+    - gpg

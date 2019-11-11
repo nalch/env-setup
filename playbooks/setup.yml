@@ -1,5 +1,4 @@
 - hosts: localhost
-  gather_facts: false
   environment: "{{ environment_vars }}"
   tasks:
 
@@ -37,7 +36,7 @@
         - repos
 
     - name: Install Packages
-      yum:
+      apt:
         name: "{{ packages }}"
         state: latest
       become: yes
@@ -49,6 +48,7 @@
         name: "{{ snap_packages }}"
         state: present
         classic: yes
+      become: yes
       tags:
         - snap
 
@@ -73,14 +73,15 @@
       tags:
         - python
 
-    - name: Create SSH key
-      user:
-        name: "{{ username }}"
-        generate_ssh_key: yes
-        ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
+    - import_role:
+        name: roles/keys
       tags:
-        - ssh
+        - keys
+
+    - name: Initialize Password Store
+      command: pass init pass-{{ username }}
+      tags:
+        - pass
 
     - name: Install Oh-My-Zsh
       shell: sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
@@ -95,4 +96,7 @@
       tags:
         - shell
     
-    
+    - import_role:
+        name: roles/docker
+      tags:
+        - docker
