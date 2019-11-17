@@ -21,3 +21,7 @@ ansible-pull -U https://github.com/nalch/env-setup.git -K -d /tmp/.nalchinstall 
 * ssh
 * shell
 * config
+* playerctl
+* fonts
+* i3config
+* i3blocks

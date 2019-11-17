@@ -11,13 +11,16 @@ repository_keys:
   - https://download.docker.com/linux/ubuntu/gpg
 
 repositories:
-  - deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+  - deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distribution_release.stdout }} stable
 
 packages:
   - curl
   - wget
   - git
+  - snapd
+  - imagemagick
   - python-pip
+  - python3-pip
   - python-dev
   - libffi-dev
   - libssl-dev
@@ -25,16 +28,32 @@ packages:
   - libxslt1-dev
   - libjpeg8-dev
   - zlib1g-dev
+  - pavucontrol
+  - acpi
+  - htop
+  - vim
   - rng-tools
   - software-properties-common
   - ca-certificates
   - apt-transport-https
+  - libpam-u2f
   - snap
   - pass
   - httpie
   - zsh
-  - tmux
   - xclip
+  - gnome-tweaks
+  - i3
+  - dunst
+  - suckless-tools
+  - i3-status
+  - i3lock
+  - i3blocks
+  - scrot
+  - yad
+  - arandr
+  - lxappearance
+  - fonts-font-awesome
 
 snap_packages:
   - code

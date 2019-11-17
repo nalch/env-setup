@@ -10,6 +10,10 @@
       tags:
         - directories
 
+    - name: Get Distribution Release
+      shell: cat /etc/upstream-release/lsb-release | grep DISTRIB_CODENAME | awk -F= '{ print $2 }'
+      register: distribution_release
+
     - name: Add Repository Keys
       apt_key:
         url: "{{ item }}"
@@ -105,3 +109,8 @@
         name: roles/config
       tags:
         - config
+
+    - import_role:
+        name: roles/i3
+      tags:
+        - i3config

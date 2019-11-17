@@ -1,0 +1,47 @@
+- name: Install PlayerCtl
+  apt:
+    deb: "{{ item }}"
+  loop:
+    - http://ftp.de.debian.org/debian/pool/main/p/playerctl/libplayerctl2_2.0.1-1_amd64.deb
+    - http://ftp.de.debian.org/debian/pool/main/p/playerctl/playerctl_2.0.1-1_amd64.deb
+  tags:
+    - i3config
+    - playerctl
+
+- name: Install fonts
+  copy:
+    src: fonts/
+    dest: "{{ home_dir }}/.fonts/"
+  tags:
+    - i3config
+    - fonts
+
+- name: Fetch i3blocks-contrib repo
+  git:
+    repo: 'https://github.com/vivien/i3blocks-contrib.git'
+    dest: "{{ home_dir }}/.config/i3/i3blocks"
+  tags:
+    - i3config
+    - i3blocks
+
+- name: Copy i3blocks configurations
+  copy:
+    src: i3blocks/i3blocks.conf
+    dest: "{{ home_dir }}/.config/i3/"
+  tags:
+    - i3config
+    - i3blocks
+
+- name: Copy i3 scripts and configurations
+  copy:
+    src: i3-config/
+    dest: "{{ home_dir }}/.config/i3/"
+  tags:
+    - i3config
+
+- name: Copy .configurations
+  copy:
+    src: config/
+    dest: "{{ home_dir }}/.config/"
+  tags:
+    - i3config

@@ -584,4 +584,4 @@ names = [
 	'yonath',
 ]
 
-print(f'{random.choice(adjectives)} {random.choice(names)}')
+print('{} {}'.format(random.choice(adjectives), random.choice(names)))
