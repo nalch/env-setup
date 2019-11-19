@@ -15,9 +15,16 @@
 
 - name: Copy Scripts
   copy:
-    src: "{{ item }}"
-    dest: "{{ home_dir }}/scripts/{{ item }}"
-  loop:
-    - docker_container_name.py
+    src: scripts/
+    dest: "{{ home_dir }}/scripts/"
   tags:
     - config
+    - scripts
+
+- name: Copy theme configurations
+  copy:
+    src: configurations/
+    dest: "{{ home_dir }}/"
+  tags:
+    - config
+    - theme

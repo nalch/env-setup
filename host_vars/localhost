@@ -44,9 +44,10 @@ packages:
   - xclip
   - gnome-tweaks
   - i3
+  - rofi
   - dunst
   - suckless-tools
-  - i3-status
+  - i3status
   - i3lock
   - i3blocks
   - scrot

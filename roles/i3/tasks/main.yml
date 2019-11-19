@@ -45,3 +45,4 @@
     dest: "{{ home_dir }}/.config/"
   tags:
     - i3config
+    - test
