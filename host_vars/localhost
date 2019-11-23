@@ -50,6 +50,7 @@ packages:
   - i3status
   - i3lock
   - i3blocks
+  - feh
   - scrot
   - yad
   - arandr
@@ -58,7 +59,6 @@ packages:
 
 snap_packages:
   - code
-  - code-insiders
   - sublime-text
   - pycharm-professional
 

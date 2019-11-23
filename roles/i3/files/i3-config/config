@@ -238,6 +238,7 @@ bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -R
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioPlay exec playerctl play-pause && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioPause exec playerctl play-pause && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioStop exec playerctl stop && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioNext exec playerctl next && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioPrev exec playerctl previous && pkill -RTMIN+1 i3blocks
 
@@ -245,6 +246,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id compton -f
 exec --no-startup-id dunst
 exec --no-startup-id ~/.screenlayout/default.sh
+exec --no-startup-id feh --bg-scale ~/.config/i3/scripts/wallpaper.png
 
 exec --no-startup-id firefox
 exec --no-startup-id signal-desktop
