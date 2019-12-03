@@ -17,6 +17,7 @@
   copy:
     src: scripts/
     dest: "{{ home_dir }}/scripts/"
+    mode: -rwxrwxr-x
   tags:
     - config
     - scripts

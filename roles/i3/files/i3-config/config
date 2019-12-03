@@ -251,5 +251,6 @@ exec --no-startup-id feh --bg-scale ~/.config/i3/scripts/wallpaper.png
 exec --no-startup-id firefox
 exec --no-startup-id signal-desktop
 
+bindsym $mod+q exec "xrandr --auto"
 bindsym $mod+m exec "~/.config/i3/scripts/move-to-primary.sh"
 bindsym $mod+l exec "~/.config/i3/scripts/lock.sh"
