@@ -16,6 +16,13 @@
     - i3config
     - fonts
 
+- name: Copy i3 scripts and configurations
+  copy:
+    src: i3
+    dest: "{{ home_dir }}/.config"
+  tags:
+    - i3config
+
 - name: Fetch i3blocks-contrib repo
   git:
     repo: 'https://github.com/vivien/i3blocks-contrib.git'
@@ -31,13 +38,6 @@
   tags:
     - i3config
     - i3blocks
-
-- name: Copy i3 scripts and configurations
-  copy:
-    src: i3-config/
-    dest: "{{ home_dir }}/.config/i3/"
-  tags:
-    - i3config
 
 - name: Copy .configurations
   copy:
