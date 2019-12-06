@@ -67,3 +67,4 @@ pip_packages:
   - paramiko
   - argcomplete
   - docker-compose
+  - td-watson
